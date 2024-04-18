@@ -67,6 +67,27 @@ public final class LeitoraDados {
 	 */
 	//TODO Método para ler o caderno
 
+	public static Caderno lerCaderno() {
+
+		System.out.println("Cadastrando Caderno...");
+		Caderno caderno = new Caderno();
+
+		System.out.println("Digite o nome");
+		String nome = lerDado();
+		livro.setNome(nome);
+
+		System.out.println("Digite o gênero: DRAMA, SUSPENSE, ROMANCE");
+		String genero = lerDado();
+		livro.setGenero(Genero.valueOf(genero.toUpperCase()));
+
+		System.out.println("Digite o preço(padrão 0.0)");
+		String preco = lerDado();
+		livro.setPreco(Double.parseDouble(preco));
+
+		return livro;
+	}
+
+
 	/**
 	 * Ler os dados do pedido e retorna um objeto a partir destes.
 	 * @return Um pedido a partir dos dados de entrada
