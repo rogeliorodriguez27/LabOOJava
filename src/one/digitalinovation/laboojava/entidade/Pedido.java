@@ -4,11 +4,12 @@ import java.util.List;
 
 /**
  * Classe que representa a entidade pedido, qual é a compra dos produtos por um cliente.
- * @author thiago leite
+ * @author rogelio
  */
 public class Pedido {
 
-    //TODO Preencher esta classe
+    //*TODO* Preencher esta classe
+    //RESOLVIDO
 
     private String codigo;
     private Cliente cliente;
