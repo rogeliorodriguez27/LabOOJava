@@ -3,9 +3,11 @@ package one.digitalinovation.laboojava.utilidade;
 import one.digitalinovation.laboojava.basedados.Banco;
 import one.digitalinovation.laboojava.entidade.Pedido;
 import one.digitalinovation.laboojava.entidade.Livro;
+import one.digitalinovation.laboojava.entidade.Caderno;
 import one.digitalinovation.laboojava.entidade.Produto;
 import one.digitalinovation.laboojava.entidade.Cupom;
 import one.digitalinovation.laboojava.entidade.constantes.Genero;
+import one.digitalinovation.laboojava.entidade.constantes.Materias;
 import one.digitalinovation.laboojava.negocio.ProdutoNegocio;
 
 import java.util.Optional;
@@ -65,26 +67,24 @@ public final class LeitoraDados {
 	 * Ler os dados do caderno a ser cadastrado.
 	 * @return Um caderno a partir dos dados de entrada
 	 */
-	//TODO Método para ler o caderno
+	//*TODO* Método para ler o caderno
+	// RESOLVIDO
 
 	public static Caderno lerCaderno() {
 
 		System.out.println("Cadastrando Caderno...");
 		Caderno caderno = new Caderno();
 
-		System.out.println("Digite o nome");
-		String nome = lerDado();
-		livro.setNome(nome);
+		System.out.println("Digite a quantidade de materias: M2, M5, M10");
+		String materias = lerDado();
+		caderno.setMaterias(Materias.valueOf(materias.toUpperCase()));
 
-		System.out.println("Digite o gênero: DRAMA, SUSPENSE, ROMANCE");
-		String genero = lerDado();
-		livro.setGenero(Genero.valueOf(genero.toUpperCase()));
 
 		System.out.println("Digite o preço(padrão 0.0)");
 		String preco = lerDado();
-		livro.setPreco(Double.parseDouble(preco));
+		caderno.setPreco(Double.parseDouble(preco));
 
-		return livro;
+		return caderno;
 	}
 
 
