@@ -55,7 +55,6 @@ public class PedidoNegocio {
      * @param novoPedido Pedido a ser armazenado
      * @param cupom Cupom de desconto a ser utilizado
      */
-    public void salvar(Pedido novoPedido, Cupom cupom) {
 
         //Definir padrão código
         //Pegar data do dia corrente
@@ -67,6 +66,29 @@ public class PedidoNegocio {
         //Adicionar no banco
         //Mensagem
     }
+
+    public void salvar(Pedido novoPedido, Cupom cupom) {
+
+        String codigo = "PE%04d";
+        codigo = String.format(codigo, bancoDados.getPedidos().length);
+        novoPedido.setCodigo(codigo);
+
+        boolean produtoRepetido = false;
+        for (Produto produto: bancoDados.getProdutos()) {
+            if (produto.getCodigo() == novoProduto.getCodigo()) {
+                produtoRepetido = true;
+                System.out.println("Produto já cadastrado.");
+                break;
+            }
+        }
+
+        if (!produtoRepetido) {
+            this.bancoDados.adicionarProduto(novoProduto);
+            System.out.println("Produto cadastrado com sucesso.");
+        }
+    }
+
+
 
     /**
      * Exclui um pedido a partir de seu código de rastreio.

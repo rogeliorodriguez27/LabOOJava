@@ -36,7 +36,7 @@ public class ProdutoNegocio {
 
         boolean produtoRepetido = false;
         for (Produto produto: bancoDados.getProdutos()) {
-            if (produto.getCodigo() == novoProduto.getCodigo()) {
+            if (produto.getCodigo().equalsIgnoreCase(novoProduto.getCodigo())  ) {
                 produtoRepetido = true;
                 System.out.println("Produto já cadastrado.");
                 break;
