@@ -74,6 +74,9 @@ public class Start {
                     break;
                 case "3":
                     //TODO Cadastrar Caderno
+                    //RESOLVIDO
+                    Caderno caderno = LeitoraDados.lerCaderno();
+                    produtoNegocio.salvar(caderno);                    
                     break;
                 case "4":
                     //TODO Excluir Caderno
