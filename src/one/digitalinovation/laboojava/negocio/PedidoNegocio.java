@@ -66,7 +66,7 @@ public class PedidoNegocio {
         //Calcular e set total
         //Adicionar no banco
         //Mensagem
-    }
+    
 
     public void salvar(Pedido novoPedido, Cupom cupom) {
 
