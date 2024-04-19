@@ -73,13 +73,13 @@ public class Start {
                     produtoNegocio.excluir(codigoLivro);
                     break;
                 case "3":
-                    //TODO Cadastrar Caderno
+                    //*TODO* Cadastrar Caderno
                     //RESOLVIDO
                     Caderno caderno = LeitoraDados.lerCaderno();
                     produtoNegocio.salvar(caderno);                    
                     break;
                 case "4":
-                    //TODO Excluir Caderno
+                    //*TODO* Excluir Caderno
                     //RESOLVIDO
                     System.out.println("Digite o código do caderno");
                     String codigoCaderno = LeitoraDados.lerDado();
@@ -105,7 +105,10 @@ public class Start {
                     produtoNegocio.listarTodos();
                     break;
                 case "8":
-                    //TODO Listar todos os Pedidos
+                    //*TODO* Listar todos os Pedidos
+                    //RESOLVIDO
+                    pedidoNegocio.listarTodos();
+
                     break;
                 case "9":
                     System.out.println(String.format("Volte sempre %s!", clienteLogado.getNome()));
