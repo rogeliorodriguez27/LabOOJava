@@ -56,7 +56,8 @@ public class PedidoNegocio {
      * @param cupom Cupom de desconto a ser utilizado
      */
 
-        //Definir padrão código
+    //Definir padrão código
+        
         //Pegar data do dia corrente
         //Formatar código
 
@@ -69,24 +70,16 @@ public class PedidoNegocio {
 
     public void salvar(Pedido novoPedido, Cupom cupom) {
 
-        String codigo = "PE%04d";
-        codigo = String.format(codigo, bancoDados.getPedidos().length);
+        String codigo = "PE%4d%2d%04d%";
+        LocalDate hoje = LocalDate.now();
+        codigo = String.format(codigo, hoje.getYear(), hoje.getMonthValue(), hoje.getDayOfMonth(), bancoDados.getPedidos().length);
         novoPedido.setCodigo(codigo);
+        novoPedido.setCliente(bancoDados.getCliente());
+        novoPedido.setTotal(calcularTotal(novoPedido.getProdutos(), cupom));
+        bancoDados.adicionarPedido(novoPedido);
+        System.out.printf("Pedido: %s guardado con exito", codigo);
 
-        boolean produtoRepetido = false;
-        for (Produto produto: bancoDados.getProdutos()) {
-            if (produto.getCodigo() == novoProduto.getCodigo()) {
-                produtoRepetido = true;
-                System.out.println("Produto já cadastrado.");
-                break;
             }
-        }
-
-        if (!produtoRepetido) {
-            this.bancoDados.adicionarProduto(novoProduto);
-            System.out.println("Produto cadastrado com sucesso.");
-        }
-    }
 
 
 
