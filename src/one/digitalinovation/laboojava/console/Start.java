@@ -80,6 +80,11 @@ public class Start {
                     break;
                 case "4":
                     //TODO Excluir Caderno
+                    //RESOLVIDO
+                    System.out.println("Digite o código do caderno");
+                    String codigoCaderno = LeitoraDados.lerDado();
+                    produtoNegocio.excluir(codigoCaderno);
+
                     break;
                 case "5":
                     Pedido pedido = LeitoraDados.lerPedido(banco);
