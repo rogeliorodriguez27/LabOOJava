@@ -1,5 +1,8 @@
 package one.digitalinovation.laboojava.entidade;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 import one.digitalinovation.laboojava.entidade.constantes.Genero;
 
 /**
@@ -42,6 +45,7 @@ public class Livro extends Produto {
         return (getPreco() * getQuantidade()) * (1 + genero.getFator());
     }
 
+
     @Override
     public String toString() {
         return "Livro{" +
@@ -51,4 +55,8 @@ public class Livro extends Produto {
                 ", preço='" + getPreco() + '\'' +
                 '}';
     }
+
+
+
 }
+

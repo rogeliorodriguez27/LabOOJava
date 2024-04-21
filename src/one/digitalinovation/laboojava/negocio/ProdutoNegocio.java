@@ -1,8 +1,12 @@
 package one.digitalinovation.laboojava.negocio;
 
 import one.digitalinovation.laboojava.basedados.Banco;
+import one.digitalinovation.laboojava.entidade.Caderno;
+import one.digitalinovation.laboojava.entidade.Livro;
 import one.digitalinovation.laboojava.entidade.Produto;
+import one.digitalinovation.laboojava.entidade.constantes.Materias;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 /**
@@ -82,17 +86,19 @@ public class ProdutoNegocio {
      * @param codigo Código de cadastro do produto
      * @return Optional indicando a existência ou não do Produto
      */
-    public Optional<Produto> consultar(String codigo) {
+    public Optional<Produto> consultarCodigo(String codigo) {
 
-        for (Produto produto: bancoDados.getProdutos()) {
+        for (Produto produto : bancoDados.getProdutos()) {
 
             if (produto.getCodigo().equalsIgnoreCase(codigo)) {
-                return  Optional.of(produto);
+                return Optional.of(produto);
             }
         }
 
         return Optional.empty();
     }
+
+    
 
     /**
      * Lista todos os produtos cadastrados.
@@ -103,9 +109,35 @@ public class ProdutoNegocio {
             System.out.println("Não existem produtos cadastrados");
         } else {
 
-            for (Produto produto: bancoDados.getProdutos()) {
+            for (Produto produto : bancoDados.getProdutos()) {
                 System.out.println(produto.toString());
             }
         }
     }
+
+
+    public Optional<Produto> consultarLivrosPorNome(String nome, ArrayList<Produto> listaDeLivros) {
+
+        for (Produto produto: listaDeLivros) {
+
+            if (produto instanceof Livro &&  ((Livro) produto).getNome().equalsIgnoreCase(nome)) {
+                return Optional.of((Livro) produto);
+            }
+        }
+        return Optional.empty();
+    }
+  
+    public Optional<Produto> consultarCadernosPorMaterias(String materia, ArrayList<Produto> listaDeCadernos) {
+
+        for (Produto produto: listaDeCadernos) {
+
+            if (produto instanceof Caderno &&  ((Caderno) produto).getMaterias().equals(materia)) {
+                return Optional.of((Caderno) produto);
+            }
+        }
+        return Optional.empty();
+    }
+  
+
+
 }

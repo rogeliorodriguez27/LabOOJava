@@ -1,5 +1,8 @@
 package one.digitalinovation.laboojava.entidade;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 /**
  * Classe que representa a abstração dos produtos que podem ser vendidos pela loja.
  * @author thiago leite
@@ -55,4 +58,7 @@ public abstract class Produto {
     //*TODO* Método de cálculo de frete
     //RESOLVIDO
     public abstract double calcularFrete();
-}
+
+
+    }
+
