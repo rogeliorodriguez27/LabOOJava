@@ -91,9 +91,9 @@ public class Start {
                     Optional<Cupom> cupom = LeitoraDados.lerCupom(banco);
 
                     if (cupom.isPresent()) {
-                        pedidoNegocio.salvar(pedido, cupom.get());
+                        pedidoNegocio.salvar(pedido, cupom.get(), clienteLogado);
                     } else {
-                        pedidoNegocio.salvar(pedido);
+                        pedidoNegocio.salvar(pedido, clienteLogado);
                     }
                     break;
                 case "6":

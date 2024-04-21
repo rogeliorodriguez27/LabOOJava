@@ -1,12 +1,14 @@
 package one.digitalinovation.laboojava.negocio;
 
 import one.digitalinovation.laboojava.basedados.Banco;
+import one.digitalinovation.laboojava.entidade.Cliente;
 import one.digitalinovation.laboojava.entidade.Cupom;
 import one.digitalinovation.laboojava.entidade.Pedido;
 import one.digitalinovation.laboojava.entidade.Produto;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Classe para manipular a entidade {@link Pedido}.
@@ -30,14 +32,14 @@ public class PedidoNegocio {
     private double calcularTotal(List<Produto> produtos, Cupom cupom) {
 
         double total = 0.0;
-        for (Produto produto: produtos) {
+        for (Produto produto : produtos) {
             total += produto.calcularFrete();
         }
 
         if (cupom != null) {
-            return  total * (1 - cupom.getDesconto());
+            return total * (1 - cupom.getDesconto());
         } else {
-            return  total;
+            return total;
         }
 
     }
@@ -45,9 +47,10 @@ public class PedidoNegocio {
     /**
      * Salva um novo pedido sem cupom de desconto.
      * @param novoPedido Pedido a ser armazenado
+     * @param clienteLogado 
      */
-    public void salvar(Pedido novoPedido) {
-        salvar(novoPedido, null);
+    public void salvar(Pedido novoPedido, Cliente cliente) {
+        salvar(novoPedido, null, cliente);
     }
 
     /**
@@ -57,31 +60,29 @@ public class PedidoNegocio {
      */
 
     //Definir padrão código
-        
-        //Pegar data do dia corrente
-        //Formatar código
 
-        //Setar código no pedido
-        //Setar cliente no pedido
-        //Calcular e set total
-        //Adicionar no banco
-        //Mensagem
-    
+    //Pegar data do dia corrente
+    //Formatar código
 
-    public void salvar(Pedido novoPedido, Cupom cupom) {
+    //Setar código no pedido
+    //Setar cliente no pedido
+    //Calcular e set total
+    //Adicionar no banco
+    //Mensagem
+
+    public void salvar(Pedido novoPedido, Cupom cupom, Cliente cliente) {
 
         String codigo = "PE%4d%2d%04d%";
         LocalDate hoje = LocalDate.now();
-        codigo = String.format(codigo, hoje.getYear(), hoje.getMonthValue(), hoje.getDayOfMonth(), bancoDados.getPedidos().length);
+        codigo = String.format(codigo, hoje.getYear(), hoje.getMonthValue(), hoje.getDayOfMonth(),
+                bancoDados.getPedidos().length);
         novoPedido.setCodigo(codigo);
-        novoPedido.setCliente(bancoDados.getCliente());
+        novoPedido.setCliente(cliente);
         novoPedido.setTotal(calcularTotal(novoPedido.getProdutos(), cupom));
         bancoDados.adicionarPedido(novoPedido);
         System.out.printf("Pedido: %s guardado con exito", codigo);
 
-            }
-
-
+    }
 
     /**
      * Exclui um pedido a partir de seu código de rastreio.
@@ -111,6 +112,7 @@ public class PedidoNegocio {
      * Lista todos os pedidos realizados.
      */
     //TODO Método de listar todos os pedidos
+    //EM PROCESSO
 
     public void listarTodos() {
 
@@ -118,11 +120,30 @@ public class PedidoNegocio {
             System.out.println("Não existem produtos cadastrados");
         } else {
 
-            for (Pedido pedido: bancoDados.getPedidos()) {
+            for (Pedido pedido : bancoDados.getPedidos()) {
                 System.out.println(pedido.toString());
             }
         }
     }
 
+/**
+     * Consulta o pedido pelo seu codigo.
+     * @param codigo codigo de um pedido
+     * @return O pedido solicitado pelo codigo.
+     */
+
+     public Optional<Pedido> consultarPedido(String codigo) {
+        for (Pedido pedido : bancoDados.getPedidos()) {
+            if (pedido.getCodigo().equalsIgnoreCase(codigo)) {
+                return Optional.of(pedido);
+            }
+        }
+            
+        return Optional.empty();
+        }
+
 
 }
+
+
+    
