@@ -72,7 +72,7 @@ public class PedidoNegocio {
 
     public void salvar(Pedido novoPedido, Cupom cupom, Cliente cliente) {
 
-        String codigo = "PE%4d%2d%04d%";
+        String codigo = "PE%4d%2d%2d%04d";
         LocalDate hoje = LocalDate.now();
         codigo = String.format(codigo, hoje.getYear(), hoje.getMonthValue(), hoje.getDayOfMonth(),
                 bancoDados.getPedidos().length);
@@ -80,7 +80,7 @@ public class PedidoNegocio {
         novoPedido.setCliente(cliente);
         novoPedido.setTotal(calcularTotal(novoPedido.getProdutos(), cupom));
         bancoDados.adicionarPedido(novoPedido);
-        System.out.printf("Pedido: %s guardado con exito", codigo);
+        System.out.printf("Pedido: %s guardado con exito\n", codigo);
 
     }
 
@@ -135,6 +135,7 @@ public class PedidoNegocio {
      public Optional<Pedido> consultarPedido(String codigo) {
         for (Pedido pedido : bancoDados.getPedidos()) {
             if (pedido.getCodigo().equalsIgnoreCase(codigo)) {
+                System.out.println(pedido);
                 return Optional.of(pedido);
             }
         }

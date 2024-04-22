@@ -1,5 +1,6 @@
 package one.digitalinovation.laboojava.entidade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,6 +11,11 @@ public class Pedido {
 
     //*TODO* Preencher esta classe
     //RESOLVIDO
+
+    public Pedido() {
+        this.produtos = new ArrayList<>();
+    }
+
 
     private String codigo;
     private Cliente cliente;

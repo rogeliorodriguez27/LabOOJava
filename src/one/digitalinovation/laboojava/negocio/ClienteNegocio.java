@@ -2,6 +2,7 @@ package one.digitalinovation.laboojava.negocio;
 
 import one.digitalinovation.laboojava.basedados.Banco;
 import one.digitalinovation.laboojava.entidade.Cliente;
+import one.digitalinovation.laboojava.utilidade.LeitoraDados;
 
 import java.util.Optional;
 
@@ -31,6 +32,7 @@ public class ClienteNegocio {
      */
 
     public Optional<Cliente> consultar(String cpf) {
+        
         for (Cliente cliente : bancoDados.getClientes()) {
             if (cliente.getCpf().equalsIgnoreCase(cpf)) {
                 return Optional.of(cliente);
@@ -47,7 +49,16 @@ public class ClienteNegocio {
      * @param cliente Novo cliente que terá acesso a aplicação
      */
         //*TODO* Fazer a inclusão de cliente
-    //Resolvido
+        //Resolvido
+        public void cadastro(){
+        System.out.println("Ingrese su nombre");
+                String nomeCliente = LeitoraDados.lerDado();
+                System.out.println("Ingrese su CPF");
+                String cpfCliente = LeitoraDados.lerDado();
+                salvar(new Cliente(nomeCliente, cpfCliente));
+
+            }
+
     public void salvar(Cliente novoCliente) {
 
         boolean clienteRepetido = false;

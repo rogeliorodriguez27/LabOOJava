@@ -35,7 +35,7 @@ public class ProdutoNegocio {
     public void salvar(Produto novoProduto) {
 
         String codigo = "PR%04d";
-        codigo = String.format(codigo, bancoDados.getProdutos().length);
+        codigo = String.format(codigo, bancoDados.getProdutos().length+1);
         novoProduto.setCodigo(codigo);
 
         boolean produtoRepetido = false;
@@ -65,14 +65,14 @@ public class ProdutoNegocio {
             for (int i = 0; i < bancoDados.getProdutos().length; i++) {
     
                 Produto produto = bancoDados.getProdutos()[i];
-                if (produto.getCodigo().equals(codigo)) {
+                if (produto.getCodigo().equalsIgnoreCase(codigo)) {
                     produtoExclusao = i;
                     break;
                 }
             }
     
             if (produtoExclusao != -1) {
-                bancoDados.removerPedido(produtoExclusao);
+                bancoDados.removerProduto(produtoExclusao);
                 System.out.println("Produto excluído com sucesso.");
             } else {
                 System.out.println("Produto inexistente.");
@@ -116,22 +116,25 @@ public class ProdutoNegocio {
     }
 
 
-    public Optional<Produto> consultarLivrosPorNome(String nome, ArrayList<Produto> listaDeLivros) {
+    public Optional<Produto> consultarLivrosPorNome(String nome) {
 
-        for (Produto produto: listaDeLivros) {
+        for (Produto produto: bancoDados.getProdutos()) {
 
-            if (produto instanceof Livro &&  ((Livro) produto).getNome().equalsIgnoreCase(nome)) {
+            if (produto instanceof Livro && ((Livro) produto).getNome().equalsIgnoreCase(nome)) {
+                System.out.println(produto);
                 return Optional.of((Livro) produto);
+                
             }
         }
         return Optional.empty();
     }
   
-    public Optional<Produto> consultarCadernosPorMaterias(String materia, ArrayList<Produto> listaDeCadernos) {
+    public Optional<Produto> consultarCadernosPorMaterias(String materia) {
 
-        for (Produto produto: listaDeCadernos) {
+        for (Produto produto: bancoDados.getProdutos()) {
 
-            if (produto instanceof Caderno &&  ((Caderno) produto).getMaterias().equals(materia)) {
+            if (produto instanceof Caderno && ((Caderno) produto).getMaterias().name().equalsIgnoreCase(materia)) {
+                System.out.println(produto);
                 return Optional.of((Caderno) produto);
             }
         }

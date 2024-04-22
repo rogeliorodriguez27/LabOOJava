@@ -105,7 +105,7 @@ public final class LeitoraDados {
 			System.out.println("Digite o código do produto(livro/Caderno)");
 			String codigo = lerDado();
 
-			Optional<Produto> resultado = produtoNegocio.consultar(codigo);
+			Optional<Produto> resultado = produtoNegocio.consultarCodigo(codigo);
 			if (resultado.isPresent()) {
 
 				Produto produto = resultado.get();

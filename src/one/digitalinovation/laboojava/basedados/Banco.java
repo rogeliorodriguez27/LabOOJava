@@ -31,7 +31,7 @@ public class Banco {
     private List<Cupom> cupons;
 
     /**
-     * Cliente cadastrado.
+     * Clientes cadastrado.
      */
     private List<Cliente> clientes;
 
@@ -41,6 +41,7 @@ public class Banco {
         this.pedidos = new ArrayList<>();
         this.clientes = new ArrayList<>();
         clientes.add(new Cliente("fulano", "12345678110"));
+        clientes.add(new Cliente("pedro", "12345678110"));
 
         this.cupons = new ArrayList<>();
         cupons.add(new Cupom("CUPOM2", 2));
